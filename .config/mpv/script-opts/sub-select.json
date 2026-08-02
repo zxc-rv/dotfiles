@@ -1,0 +1,42 @@
+[
+  {
+    "alang": [
+      "jpn",
+      "ja"
+    ],
+    "slang": [
+      "rus",
+      "ru"
+    ],
+    "blacklist": [
+      "sign",
+      "song",
+      "signs",
+      "надпис",
+      "Надпис"
+    ]
+  },
+  {
+    "alang": "*",
+    "slang": [
+      "rus",
+      "ru"
+    ],
+    "blacklist": [
+      "sign",
+      "song",
+      "signs",
+      "надпис",
+      "Надпис"
+    ]
+  },
+  {
+    "alang": "*",
+    "slang": [
+      "rus",
+      "ru",
+      "eng?",
+      "und"
+    ]
+  }
+]
