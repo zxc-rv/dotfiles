@@ -1,0 +1,138 @@
+    workspace "1" { open-on-output "DP-2"; }
+    workspace "2" { open-on-output "DP-2"; }
+    workspace "3" { open-on-output "DP-2"; }
+    workspace "4" { open-on-output "DP-2"; }
+    // workspace "G" { open-on-output "DP-2"; }
+
+    window-rule {
+        match is-window-cast-target=true
+
+        focus-ring {
+            active-color "#f38ba8"
+            inactive-color "#7d0d2d"
+        }
+
+        border {
+            inactive-color "#7d0d2d"
+        }
+
+        shadow {
+            color "#7d0d2d70"
+        }
+
+        tab-indicator {
+            active-color "#f38ba8"
+            inactive-color "#7d0d2d"
+        }
+    }
+
+    window-rule {
+        // geometry-corner-radius 12
+        clip-to-geometry true
+        draw-border-with-background false
+    }
+
+    window-rule {
+      match app-id="steam_app_"
+      variable-refresh-rate true
+      open-on-workspace "G"
+      open-focused true
+      border { off; }
+      shadow { off; }
+    }
+
+    // window-rule {
+    //   match app-id="mpv"
+    //   variable-refresh-rate true
+    // }
+
+    window-rule {
+        match app-id="^steam$"
+        match app-id="^XEyes$"
+        match app-id="Tensaku$"
+        match app-id="qBittorrent"
+        match title="Media viewer"
+        exclude title=r#"^[Ss]team$"#
+        exclude title="qBittorrent"
+        open-floating true
+    }
+
+    window-rule {
+      match app-id="org.gnome.Nautilus" title="Все файлы"
+      open-floating true
+      min-height 700
+      min-width 600
+    }
+
+    layer-rule {
+        match layer="top"
+        match layer="overlay"
+        background-effect { xray false; }
+    }
+
+    layer-rule {
+        match namespace="launcher"
+        background-effect { blur true; }
+    }
+
+    window-rule {
+        match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+        default-floating-position x=10 y=10 relative-to="bottom-right"
+        border { off; }
+        open-focused false
+    }
+
+    // window-rule {
+    //     match app-id="^steam$" title="^Steam$"
+    //     open-on-workspace "G"
+    //     open-focused true
+    // }
+
+    // window-rule {
+    //   match app-id="[Bb]rave|helium"
+    //   match app-id="^steam$" title="^Steam$"
+    //   default-column-width { fixed 2073; }
+    //   // default-column-width { proportion 1.0; }
+    // }
+ 
+    window-rule {
+        match title="Picture-in-Picture"
+        open-floating true
+        open-on-output "DP-1"
+        default-floating-position x=10 y=10 relative-to="bottom-left"
+    }
+
+    // window-rule {
+    //     match app-id="vicinae"
+    //     border { off; }
+    // }
+
+    window-rule {
+        match app-id="zen"
+        background-effect { blur true; }
+    }
+    window-rule {
+        match title="^The First Descendant$"
+        exclude app-id="steam$"
+        // max-width 1
+        // max-height 1
+        opacity 0.1
+        border { off; }
+        shadow { off; }
+    }
+    // window-rule {
+    //     match title="^Black Desert|^PALauncher"
+    //     border { off; }
+    //     shadow { off; }
+    // }
+
+    // window-rule {
+    //   match app-id="[Nn]autilus|ProtonPlus|[Kk]ooha|xdg-desktop-portal-gnome|MissionCenter|baobab"
+    //   geometry-corner-radius 30
+    //   background-effect {
+    //     blur true
+    //     noise 0.02
+    //   }
+    // }
+
+

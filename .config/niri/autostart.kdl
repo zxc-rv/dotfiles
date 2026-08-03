@@ -1,0 +1,9 @@
+// ────────────── Startup Applications ──────────────
+// https://github.com/niri-wm/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
+
+spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
+spawn-at-startup "vicinae" "server"
+spawn-at-startup "noctalia"
+spawn-at-startup "oniri" "-RT"
+spawn-at-startup "kitty" "-1" "--start-as=hidden"
+spawn-at-startup "udiskie"

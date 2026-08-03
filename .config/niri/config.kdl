@@ -1,0 +1,12 @@
+include "./animation.kdl"
+include "./autostart.kdl"
+include "./keybinds.kdl"
+include "./input.kdl"
+include "./output.kdl"
+include "./layout.kdl"
+include "./rules.kdl"
+include "./misc.kdl"
+
+// include "noctalia.kdl"
+
+include "noctalia.kdl"

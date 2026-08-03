@@ -1,0 +1,43 @@
+layout {
+    gaps 10
+    always-center-single-column
+    center-focused-column "never" // Don’t auto-center focused column
+    background-color "transparent" // <- needed for noctalia-shell to set wallpaper
+
+    // default-column-width {
+    //     proportion 0.5
+    // }
+
+    preset-column-widths {
+        proportion 0.5
+        proportion 1.0
+    }
+
+    focus-ring {
+        off
+        active-gradient from="#00d5ff" to="#004cff" angle=135
+        width 2
+    }
+
+    border {
+        on
+        width 2
+        active-gradient from="#00d5ff" to="#004cff" angle=135
+        urgent-color "#9b0000"
+    }
+
+    shadow { 
+        on
+        softness 1
+        spread 1
+        offset x=0 y=0
+    }
+
+    // struts {
+    //     left 4
+    //     right 4
+    //     bottom 2
+    //     top 2
+    // }
+
+}
