@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-exec < /dev/tty
 
 repository_url="https://github.com/zxc-rv/dotfiles"
 repository_subdirectory=".config"
