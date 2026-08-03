@@ -38,7 +38,7 @@ gum style --bold "Выбрано:"
 sed 's/^/  • /' <<<"$selected_folders"
 echo
 
-if ! gum confirm "Переместить в $target_directory?"; then
+if ! gum confirm --default=yes "Переместить в $target_directory?"; then
   echo "Отмена"
   exit 0
 fi
