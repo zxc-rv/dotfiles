@@ -8,7 +8,7 @@ if ! command -v gum >/dev/null; then
     echo "ℹ️ gum не найден, установка..."
     sudo pacman -S gum --noconfirm &>/dev/null
   else
-    echo "Нужен gum, установи вручную для своего дистра"
+    echo "❌ Не найдена зависимость: gum"
     exit 1
   fi
 fi
