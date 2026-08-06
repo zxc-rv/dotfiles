@@ -3,7 +3,7 @@ hl.workspace_rule({ workspace = "name:G", monitor = "DP-2", animation = "fade" }
 hl.bind("SUPER + G", hl.dsp.focus({ workspace = "name:G" }))
 
 hl.on("window.open", function(win)
-	local isGameWindow = win.class:find("^steam_app_") or win.class == "gamescope"
+	local isGameWindow = win.content_type == "game"
 	if isGameWindow then
 		hl.dispatch(hl.dsp.window.move({
 			workspace = "name:G",
@@ -14,7 +14,7 @@ end)
 
 hl.on("window.close", function(win)
 	local ok, err = pcall(function()
-		local isGameWindow = win.class:find("^steam_app_") or win.class == "gamescope"
+		local isGameWindow = win.content_type == "game"
 		if not isGameWindow then
 			return
 		end
@@ -36,7 +36,7 @@ hl.on("window.close", function(win)
 end)
 
 hl.window_rule({
-	match = { class = "steam_app_.*|gamescope" },
+	match = { class = "steam_app_.*|gamescope|Minecraft.*" },
 	float = false,
 	immediate = true,
 	content = "game",
