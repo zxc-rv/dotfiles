@@ -30,7 +30,7 @@ hl.bind(
 	-- hl.dsp.exec_cmd("~/.config/noctalia/mpv-launcher.sh")
 	-- hl.dsp.exec_cmd("pkill fuzzel || /home/rv/.config/fuzzel/scripts/mpv-launcher.sh")
 )
-hl.bind("ALT + TAB", hl.dsp.exec_cmd("vicinae vicinae://close || vicinae vicinae://launch/wm/switch-windows"))
+-- hl.bind("ALT + TAB", hl.dsp.exec_cmd("vicinae vicinae://close || vicinae vicinae://launch/wm/switch-windows"))
 hl.bind(Hyper .. " + R", hl.dsp.exec_cmd("vicinae vicinae://close || vicinae vicinae://launch/snippets/manage"))
 hl.bind(Super .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(Super .. " + CTRL + F", function()
@@ -81,7 +81,7 @@ local function focus_and_warp(monitor_name)
 		}))
 	end
 end
-
+hl.bind("ALT + Tab", hl.dsp.focus({ workspace = "previous" }))
 hl.bind("SUPER + 1", focus_and_warp("DP-2"))
 hl.bind("SUPER + 2", focus_and_warp("DP-1"))
 hl.bind("SUPER + CTRL + 1", hl.dsp.window.move({ monitor = "DP-2" }))
