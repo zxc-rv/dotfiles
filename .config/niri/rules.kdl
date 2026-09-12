@@ -1,8 +1,12 @@
-    workspace "1" { open-on-output "DP-2"; }
-    workspace "2" { open-on-output "DP-2"; }
-    workspace "3" { open-on-output "DP-2"; }
-    workspace "4" { open-on-output "DP-2"; }
-    // workspace "G" { open-on-output "DP-2"; }
+    workspace "1" { open-on-output "DP-1"; }
+    workspace "2" { open-on-output "DP-1"; }
+    workspace "3" { open-on-output "DP-1"; }
+    workspace "4" { open-on-output "DP-1"; }
+    workspace "5" { open-on-output "DP-1"; }
+    workspace "6" { open-on-output "DP-2"; }
+    workspace "7" { open-on-output "DP-2"; }
+    workspace "8" { open-on-output "DP-2"; }
+    workspace "9" { open-on-output "DP-2"; }
 
     window-rule {
         match is-window-cast-target=true
@@ -35,8 +39,8 @@
     window-rule {
       match app-id="steam_app_"
       variable-refresh-rate true
-      open-on-workspace "G"
-      open-focused true
+      // open-on-workspace "1"
+      open-on-output "DP-1"
       border { off; }
       shadow { off; }
     }
@@ -48,6 +52,7 @@
 
     window-rule {
         match app-id="^steam$"
+        match app-id="zen" title=".*Bitwarden.*"
         match app-id="^XEyes$"
         match app-id="Tensaku$"
         match app-id="qBittorrent"
@@ -70,9 +75,19 @@
         background-effect { xray false; }
     }
 
+    // layer-rule {
+    //     match namespace="noctalia-bar"
+    //     background-effect { blur false; }
+    // }
+
     layer-rule {
         match namespace="launcher"
         background-effect { blur true; }
+    }
+
+    layer-rule {
+        match namespace="^noctalia-wallpaper$"
+        place-within-backdrop true
     }
 
     window-rule {
@@ -82,33 +97,41 @@
         open-focused false
     }
 
-    // window-rule {
-    //     match app-id="^steam$" title="^Steam$"
-    //     open-on-workspace "G"
-    //     open-focused true
-    // }
+    window-rule {
+        match app-id="^steam$" title="^Steam$"
+        open-on-workspace "Gaming"
+        open-focused true
+    }
 
-    // window-rule {
-    //   match app-id="[Bb]rave|helium"
-    //   match app-id="^steam$" title="^Steam$"
-    //   default-column-width { fixed 2073; }
-    //   // default-column-width { proportion 1.0; }
-    // }
+    window-rule {
+      match app-id="[Bb]rave|helium|^zen$"
+      // match app-id="^steam$" title="^Steam$"
+      default-column-width { fixed 2073; }
+    //   default-column-width { proportion 1.0; }
+    }
  
     window-rule {
-        match title="Picture-in-Picture"
+        match app-id="zen" title="Picture-in-Picture"
         open-floating true
-        open-on-output "DP-1"
+        open-on-output "DP-2"
         default-floating-position x=10 y=10 relative-to="bottom-left"
+        open-focused false
+        max-width 1280
+        max-height 768
     }
 
     // window-rule {
     //     match app-id="vicinae"
     //     border { off; }
     // }
+    window-rule {
+      match title="Vicinae Settings"
+      open-floating true
+    }
 
     window-rule {
         match app-id="zen"
+        match app-id="dev.noctalia.Noctalia"
         background-effect { blur true; }
     }
     window-rule {

@@ -1,0 +1,74 @@
+#!/bin/bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: $0 <path/to/game.exe> <SteamAppID> [ProtonPath] [GameID]"
+  exit 1
+}
+
+[ $# -lt 2 ] && usage
+
+STEAMGRIDDB_API_KEY=""
+
+command -v jq >/dev/null || {
+  echo "нужен jq: sudo apt install jq / pacman -S jq"
+  exit 1
+}
+
+exe="$1"
+appid="$2"
+proton="${3:-/home/$USER/.steam/root/compatibilitytools.d/Proton-Wineland Latest-x86_64_v3}"
+gameid="${4:-$appid}"
+sgdb_auth="Authorization: Bearer $STEAMGRIDDB_API_KEY"
+
+appdetails=$(curl -fsSL "https://store.steampowered.com/api/appdetails?appids=$appid&l=english")
+data=$(echo "$appdetails" | jq -r ".\"$appid\".data")
+
+[ "$data" = "null" ] && {
+  echo "steam не знает такой appid: $appid"
+  exit 1
+}
+
+name=$(echo "$data" | jq -r ".name")
+slug="${name// /}"
+gamedir="$(dirname "$exe")"
+icon="$gamedir/$slug.png"
+
+sgdb_game=$(curl -fsSL -H "$sgdb_auth" "https://www.steamgriddb.com/api/v2/games/steam/$appid" | jq -r ".data.id // empty")
+
+icon_url=""
+if [ -n "$sgdb_game" ]; then
+  icon_url=$(curl -fsSL -H "$sgdb_auth" "https://www.steamgriddb.com/api/v2/icons/game/$sgdb_game?mimes=image/png&styles=official" |
+    jq -r ".data | sort_by(-.width) | .[0].url // empty")
+fi
+if [ -z "$icon_url" ] && [ -n "$sgdb_game" ]; then
+  icon_url=$(curl -fsSL -H "$sgdb_auth" "https://www.steamgriddb.com/api/v2/icons/game/$sgdb_game?mimes=image/png" |
+    jq -r ".data | sort_by(-.width) | .[0].url // empty")
+fi
+
+if [ -n "$icon_url" ] && curl -fsSL "$icon_url" -o "$icon"; then
+  :
+else
+  echo "иконка не нашлась в SteamGridDB по appid $appid, оставляю пусто"
+  icon=""
+fi
+
+mkdir -p "$HOME/.local/share/applications"
+desktop="$HOME/.local/share/applications/$slug.desktop"
+
+cat >"$desktop" <<EOF
+[Desktop Entry]
+Name=$name
+Exec=env "WINEPREFIX=$HOME/Games/umu/$slug" PROTON_HUD=1,scale=0.75,-winsys,-fps_lows,-bottom,-center "PROTONPATH=$proton" GAMEID=$gameid umu-run "$exe"
+Icon=$icon
+Type=Application
+Terminal=false
+Categories=Game;
+StartupNotify=false
+Hidden=false
+EOF
+
+chmod +x "$desktop"
+update-desktop-database "$HOME/.local/share/applications" 2>/dev/null || true
+
+echo "готово: $desktop"

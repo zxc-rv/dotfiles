@@ -9,8 +9,8 @@
         XDG_CURRENT_DESKTOP "niri"
         XDG_SESSION_TYPE "wayland"
         PROTON_ENABLE_WAYLAND "1"
-        PROTON_DXVK_LOWLATENCY "1"
-        PROTON_VKD3D_LOWLATENCY "1"
+        PROTON_NO_STEAMINPUT "1"
+
     }
 
     cursor {
@@ -19,9 +19,9 @@
     }
 
     debug {
-        // Allows notification actions and window activation from Noctalia.
         honor-xdg-activation-with-invalid-serial
         enable-overlay-planes
+        // disable-direct-scanout
     }
 
     clipboard {
@@ -30,4 +30,10 @@
 
     hotkey-overlay {
        skip-at-startup
+    }
+
+
+    blur {
+      passes 3
+      offset 9.0
     }

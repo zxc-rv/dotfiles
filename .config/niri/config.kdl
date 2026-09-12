@@ -7,6 +7,5 @@ include "./layout.kdl"
 include "./rules.kdl"
 include "./misc.kdl"
 
-// include "noctalia.kdl"
-
 include "noctalia.kdl"
+// include "disable-ws-switch-anim.kdl"

@@ -3,13 +3,21 @@
 // You will have to remove "/-" and edit it before it takes effect.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 
-output "DP-2" {
+output "DP-1" {
     mode "2560x1440" // Set resolution and refresh rate
     focus-at-startup
     variable-refresh-rate on-demand=true
+    hot-corners { off; }
+    layout { always-center-single-column; }
 }
 
 
-output "DP-1" {
+output "DP-2" {
     mode "1920x1080" // Set resolution and refresh rate
+    hot-corners { off; }
+    layout {
+      default-column-width {
+        proportion 0.5
+      }
+    }
 }

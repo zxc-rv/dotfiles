@@ -7,22 +7,25 @@ binds {
     // https://docs.noctalia.dev/getting-started/keybinds/
 
     // DEBUG
-    Mod+Shift+Ctrl+T { toggle-debug-tint; }
+    Mod+ALt+Ctrl+T { toggle-debug-tint; }
 
     Ctrl+Space                          { switch-layout "next"; }
     // Shift+Alt_r                          { switch-layout "next"; }
     Mod+Shift+ESCAPE                     { show-hotkey-overlay; }
 
     // ─── Applications ───
-    Ctrl+Alt+Mod+Return  hotkey-overlay-title="Open Terminal" { spawn "kitty" "-1"; }
+    Ctrl+Alt+Mod+Return  hotkey-overlay-title="Open Terminal" { spawn "foot"; }
     // Ctrl+Alt+Mod+F       hotkey-overlay-title="Open App Launcher" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Ctrl+Alt+Mod+F       hotkey-overlay-title="Open App Launcher" { spawn "vicinae" "toggle"; }
-    Ctrl+Alt+Mod+B       hotkey-overlay-title="Open Browser" { spawn "brave-origin-nightly" "--ozone-platform=x11"; }
+    // Ctrl+Alt+Mod+F       hotkey-overlay-title="Open App Launcher" { spawn-sh "pkill fuzzel || fuzzel"; }
+    // Ctrl+Alt+Mod+B       hotkey-overlay-title="Open Browser" { spawn "brave-origin-nightly" "--ozone-platform=wayland"; }
+    // Ctrl+Alt+Mod+B       hotkey-overlay-title="Open Browser" { spawn "zen-browser"; }
+    Ctrl+Alt+Mod+B       hotkey-overlay-title="Open Browser" { spawn "helium-browser"; }
     // Ctrl+Alt+Mod+P       hotkey-overlay-title="MPV Launcher" { spawn "~/.config/noctalia/mpv-launcher.sh"; }
     Ctrl+Alt+Mod+P       hotkey-overlay-title="MPV Launcher" { spawn-sh "vicinae vicinae://close || vicinae vicinae://launch/@the_revolution/mpv-launcher/mpv-launcher"; }
     // Ctrl+Alt+Mod+V       hotkey-overlay-title="Clipboard" { spawn-sh "noctalia msg panel-toggle clipboard"; }
     Ctrl+Alt+Mod+V       hotkey-overlay-title="Clipboard" { spawn-sh "vicinae vicinae://close || vicinae vicinae://launch/clipboard/history"; }
-    // Ctrl+Alt+Mod+S       hotkey-overlay-title="SSH" { spawn-sh "vicinae vicinae://close || vicinae vicinae://launch/@leiserfg/ssh/ssh"; }
+    Mod+S       hotkey-overlay-title="SSH" { spawn-sh "vicinae vicinae://close || vicinae vicinae://launch/@leiserfg/ssh/ssh"; }
     Ctrl+Alt+Mod+E       hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
     Mod+C                      { spawn-sh "vicinae vicinae://close || ~/.config/noctalia/config-lister.sh"; }
 
@@ -43,26 +46,22 @@ binds {
     // ─── Window Movement and Focus ───
     Alt+F4                              { close-window; }
     // Alt+F4 { spawn-sh "niri msg action close-window; sleep 0.1; niri msg action focus-column-left; niri msg action focus-column-right"; }
-    Alt+W                               { focus-window-up; }
-    Alt+A                               { focus-column-left; }
-    Alt+S                               { focus-window-down; }
-    Alt+D                               { focus-column-right; }
+    Alt+W                               { focus-window-or-workspace-up; }
+    Alt+S                               { focus-window-or-workspace-down; }
+    Alt+A                               { focus-column-or-monitor-left; }
+    Alt+D                               { focus-column-or-monitor-right; }
     Mod+H                               { focus-column-left; }
     Mod+L                               { focus-column-right; }
-    Mod+Up                              { focus-window-up; }
+    Alt+Up                              { focus-window-up; }
     Mod+K                               { focus-window-up; }
-    Mod+Down                            { focus-window-down; }
+    Alt+Down                            { focus-window-down; }
     Mod+J                               { focus-window-down; }
 
     
-    Alt+Ctrl+H                          { move-column-left; }
-    Alt+Ctrl+A                          { move-column-left; }
-    Alt+Ctrl+L                          { move-column-right; }
-    Alt+Ctrl+D                          { move-column-right; }
-
-    Alt+Ctrl+W                          { move-window-up; }
-    Alt+Ctrl+S                          { move-window-down; }
-
+    Ctrl+Alt+H                          { move-column-left; }
+    Ctrl+Alt+A                          { move-column-left-or-to-monitor-left; }
+    Ctrl+Alt+L                          { move-column-right; }
+    Ctrl+Alt+D                          { move-column-right-or-to-monitor-right; }
 
     Mod+Home                            { focus-column-first; }
     Mod+End                             { focus-column-last; }
@@ -95,31 +94,33 @@ binds {
     Mod+Ctrl+Shift+WheelScrollDown      { move-column-right; }
     Mod+Ctrl+Shift+WheelScrollUp        { move-column-left; }
 
-    Mod+1 { focus-monitor "DP-2"; }
-    Mod+2 { focus-monitor "DP-1"; }
-    Mod+Ctrl+1 { move-window-to-monitor "DP-2"; }
-    Mod+Ctrl+2 { move-window-to-monitor "DP-1"; }
+    Mod+1 { focus-monitor "DP-1"; }
+    Mod+2 { focus-monitor "DP-2"; }
+    Mod+Ctrl+1 { move-window-to-monitor "DP-1"; }
+    Mod+Ctrl+2 { move-window-to-monitor "DP-2"; }
 
-    Alt+1                               { focus-workspace 1; }
-    Alt+2                               { focus-workspace 2; }
-    Alt+3                               { focus-workspace 3; }
-    Alt+4                               { focus-workspace 4; }
-    Alt+5                               { focus-workspace 5; }
-    Alt+6                               { focus-workspace 6; }
-    Alt+7                               { focus-workspace 7; }
-    Alt+8                               { focus-workspace 8; }
-    Alt+9                               { focus-workspace 9; }
-    Mod+G                               { focus-workspace "g"; }
+    Alt+1                               { focus-workspace "1"; }
+    Alt+2                               { focus-workspace "2"; }
+    Alt+3                               { focus-workspace "3"; }
+    Alt+4                               { focus-workspace "4"; }
+    Alt+5                               { focus-workspace "5"; }
+    Alt+6                               { focus-workspace "6"; }
+    Alt+7                               { focus-workspace "7"; }
+    Alt+8                               { focus-workspace "8"; }
+    Alt+9                               { focus-workspace "9"; }
+    Mod+G                               { focus-workspace "G"; }
     
-    Alt+Ctrl+1                          { move-window-to-workspace 1; }
-    Alt+Ctrl+2                          { move-window-to-workspace 2; }
-    Alt+Ctrl+3                          { move-window-to-workspace 3; }
-    Alt+Ctrl+4                          { move-window-to-workspace 4; }
-    Alt+Ctrl+5                          { move-window-to-workspace 5; }
-    Alt+Ctrl+6                          { move-window-to-workspace 6; }
-    Alt+Ctrl+7                          { move-window-to-workspace 7; }
-    Alt+Ctrl+8                          { move-window-to-workspace 8; }
-    Alt+Ctrl+9                          { move-window-to-workspace 9; }
+    Ctrl+Alt+1                          { move-window-to-workspace "1"; }
+    Ctrl+Alt+2                          { move-window-to-workspace "2"; }
+    Ctrl+Alt+3                          { move-window-to-workspace "3"; }
+    Ctrl+Alt+4                          { move-window-to-workspace "4"; }
+    Ctrl+Alt+5                          { move-window-to-workspace "5"; }
+    Ctrl+Alt+6                          { move-window-to-workspace "6"; }
+    Ctrl+Alt+7                          { move-window-to-workspace "7"; }
+    Ctrl+Alt+8                          { move-window-to-workspace "8"; }
+    Ctrl+Alt+9                          { move-window-to-workspace "9"; }
+    Ctrl+Alt+W                          { move-window-up-or-to-workspace-up; }
+    Ctrl+Alt+S                          { move-window-down-or-to-workspace-down; }
 
     Mod+TAB                             { focus-workspace-previous; }
 
@@ -148,11 +149,12 @@ binds {
     Ctrl+Shift+1                               { spawn "noctalia" "msg" "screenshot-region"; }
     Ctrl+Shift+2                          { spawn "~/.local/bin/record-gif.sh"; }
     Mod+E                               { spawn-sh "wl-paste -t image/png | tensaku -f -"; }
+    Mod+Escape                          { spawn "noctalia" "msg" "panel-toggle" "session"; }
 
     // ─── Emergency Escape Key ───
     // Use this when a fullscreen app blocks your keybinds.
     // It disables any active keyboard shortcut inhibitor, restoring control.
-    Mod+ESCAPE                          allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Ctrl+ESCAPE                          allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // ─── Exit / Power ───
     Ctrl+Alt+Delete                     { quit; } // Also quits Niri
