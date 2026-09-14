@@ -20,8 +20,6 @@
       "nix-command"
       "flakes"
     ];
-    substituters = [ "https://attic.xuyh0120.win/lantian" ];
-    trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
   };
 
   boot = {
@@ -72,11 +70,11 @@
       package = pkgs.ananicy-cpp;
       rulesProvider = pkgs.ananicy-rules-cachyos;
     };
-    scx = {
-      enable = true;
-      scheduler = "scx_lavd";
-      extraArgs = [ "--performance" ];
-    };
+    # scx = {
+    #   enable = true;
+    #   scheduler = "scx_lavd";
+    #   extraArgs = [ "--performance" ];
+    # };
     displayManager.dms-greeter = {
       enable = true;
       compositor.name = "niri";

@@ -2,6 +2,8 @@
   description = "zxc-flake";
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
+    cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    flyline.url = "github:HalFrgrd/flyline";
     helium-browser = {
       url = "github:oxcl/nix-flake-helium-browser";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -10,8 +12,6 @@
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    flyline.url = "github:HalFrgrd/flyline";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,10 +20,10 @@
   outputs =
     {
       nixpkgs,
+      cachyos-kernel,
+      flyline,
       helium-browser,
       dms,
-      nix-cachyos-kernel,
-      flyline,
       home-manager,
       ...
     }:
@@ -36,16 +36,30 @@
           flyline.nixosModules.default
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.rv = import ./home.nix;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.rv = import ./home.nix;
+            };
           }
+          helium-browser.nixosModules.default
           ({ pkgs, ... }: {
-            environment.systemPackages = [ pkgs.helium ];
             nixpkgs.overlays = [
               helium-browser.overlays.default
-              nix-cachyos-kernel.overlays.pinned
+              cachyos-kernel.overlays.pinned
             ];
+            programs.helium = {
+              enable = true;
+              flags = [ "--enable-features=VaapiOnNvidiaGPUs" ];
+              policies = {
+                ExtensionInstallForcelist = [
+                  "ajopnjidmegmdimjlfnijceegpefgped"
+                  "ghmbeldphafepmbegfdlkpapadhbakde"
+                  "mnjggcdmjocbbbhaepdhchncahnbgone"
+                  "gkeojjjcdcopjkbelgbcpckplegclfeg"
+                ];
+              };
+            };
           })
         ];
       };
