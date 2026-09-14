@@ -12,6 +12,10 @@
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     flyline.url = "github:HalFrgrd/flyline";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     {
@@ -20,6 +24,7 @@
       dms,
       nix-cachyos-kernel,
       flyline,
+      home-manager,
       ...
     }:
     {
@@ -29,6 +34,12 @@
           ./configuration.nix
           dms.nixosModules.dank-material-shell
           flyline.nixosModules.default
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.rv = import ./home.nix;
+          }
           ({ pkgs, ... }: {
             environment.systemPackages = [ pkgs.helium ];
             nixpkgs.overlays = [

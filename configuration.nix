@@ -9,12 +9,13 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
     ./nvidia.nix
     ./xkeen-run.nix
   ];
 
   nix.settings = {
+    auto-optimise-store = true;
     experimental-features = [
       "nix-command"
       "flakes"
@@ -120,11 +121,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment = {
-    shellAliases = {
-      sns = "sudo nixos-rebuild switch";
-      lg = "lazygit";
-      e = "nvim";
-    };
     sessionVariables.QS_ICON_THEME = "hicolor";
     systemPackages = with pkgs; [
       adwaita-icon-theme
@@ -141,7 +137,6 @@
       fzf
       gamescope
       gcc
-      git
       go
       gtk3
       gtk4
@@ -152,7 +147,6 @@
       just
       kdePackages.breeze
       kdePackages.qt6ct
-      kitty
       nftables
       tcpdump
       knot-dns
