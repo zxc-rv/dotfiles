@@ -197,6 +197,7 @@
   ];
 
   programs = {
+    nano.enable = false;
     niri.enable = true;
     dank-material-shell = {
       enable = true;
