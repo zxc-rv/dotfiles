@@ -6,7 +6,7 @@
     stateVersion = "26.05";
     file.".config/mpv".source = ./.config/mpv;
     packages = [
-      (pkgs.writeShellScriptBin "xkeen-dscp" (builtins.readFile ./scripts/xkeen-run))
+      (pkgs.writeShellScriptBin "xkeen-run" (builtins.readFile ./scripts/xkeen-run))
       (pkgs.writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
