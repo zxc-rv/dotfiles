@@ -127,6 +127,7 @@
       bun
       codex
       cups-pk-helper
+      dysk
       fastfetch
       fd
       fetch
@@ -145,12 +146,12 @@
       just
       kdePackages.breeze
       kdePackages.qt6ct
-      nftables
-      tcpdump
       knot-dns
       lazygit
       mpv
       nautilus
+      nftables
+      nh
       nixfmt
       nodejs
       nvtopPackages.nvidia
@@ -162,6 +163,7 @@
       ripgrep
       rustup
       statix
+      tcpdump
       tree-sitter
       udiskie
       umu-launcher
