@@ -11,7 +11,7 @@
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/share/applications"
-      ${pkgs.gnused}/bin/sed 's|^Exec=vesktop|Exec=xkeen-dscp vesktop|' \
+      ${pkgs.gnused}/bin/sed 's|^Exec=vesktop|Exec=xkeen-run vesktop|' \
         ${pkgs.vesktop}/share/applications/vesktop.desktop \
         > "$HOME/.local/share/applications/vesktop.desktop"
     '';
