@@ -46,6 +46,7 @@
       tree-sitter
       udiskie
       umu-launcher
+      ipinfo
       unzip
       vesktop
       vial
@@ -67,6 +68,7 @@
         sns = "sudo nixos-rebuild switch --impure --flake /home/rv/dotfiles#revolution-pc";
         lg = "lazygit";
         e = "nvim";
+        ii = "ipinfo";
       };
       bashrcExtra = ''
         flyline editor --show-inline-history-metadata false
