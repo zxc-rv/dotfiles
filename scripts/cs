@@ -8,8 +8,6 @@ usage() {
 
 [ $# -lt 2 ] && usage
 
-STEAMGRIDDB_API_KEY=""
-
 command -v jq >/dev/null || {
   echo "нужен jq: sudo apt install jq / pacman -S jq"
   exit 1
