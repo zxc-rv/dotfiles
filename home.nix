@@ -37,7 +37,6 @@
       nodejs
       nvtopPackages.nvidia
       nwg-look
-      opencode
       protonplus
       python3
       qbittorrent
@@ -135,5 +134,6 @@
       '';
     };
     imv.enable = true;
+    opencode.enable = true;
   };
 }
