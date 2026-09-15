@@ -25,8 +25,10 @@
       gum
       helix
       htop
+      ipinfo
       jq
       just
+      knot-dns
       lazygit
       mpv
       nh
@@ -46,13 +48,11 @@
       tree-sitter
       udiskie
       umu-launcher
-      ipinfo
       unzip
       vesktop
       vial
       wl-clip-persist
       wl-clipboard
-      knot-dns
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/share/applications"
@@ -134,5 +134,6 @@
         include dank-theme.conf
       '';
     };
+    imv.enable = true;
   };
 }
