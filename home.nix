@@ -5,9 +5,10 @@
     homeDirectory = "/home/rv";
     stateVersion = "26.05";
     file.".config/mpv".source = ./.config/mpv;
-    packages = [
-      (pkgs.writeShellScriptBin "xkeen-run" (builtins.readFile ./scripts/xkeen-run))
-      (pkgs.writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
+    packages = with pkgs; [
+      (writeShellScriptBin "xkeen-run" (builtins.readFile ./scripts/xkeen-run))
+      (writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
+      vesktop
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/share/applications"
