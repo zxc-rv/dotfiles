@@ -11,7 +11,6 @@
   imports = [
     /etc/nixos/hardware-configuration.nix
     ./nvidia.nix
-    ./xkeen-run.nix
   ];
 
   nix.settings = {
