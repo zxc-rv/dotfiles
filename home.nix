@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home = {
     username = "rv";
@@ -6,8 +6,15 @@
     stateVersion = "26.05";
     file.".config/mpv".source = ./.config/mpv;
     packages = [
+      (pkgs.writeShellScriptBin "xkeen-dscp" (builtins.readFile ./scripts/xkeen-run))
       (pkgs.writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
     ];
+    activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir -p "$HOME/.local/share/applications"
+      ${pkgs.gnused}/bin/sed 's|^Exec=vesktop|Exec=xkeen-dscp vesktop|' \
+        ${pkgs.vesktop}/share/applications/vesktop.desktop \
+        > "$HOME/.local/share/applications/vesktop.desktop"
+    '';
   };
   programs = {
     bash = {
