@@ -152,6 +152,7 @@
       nautilus
       nftables
       nh
+      nil
       nixfmt
       nodejs
       nvtopPackages.nvidia
