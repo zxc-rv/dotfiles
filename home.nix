@@ -5,6 +5,9 @@
     homeDirectory = "/home/rv";
     stateVersion = "26.05";
     file.".config/mpv".source = ./.config/mpv;
+    packages = [ 
+      pkgs.writeShellScriptBin "cs" (builtins.readfile ./scripts/cs))
+    ];
   };
   programs = {
     bash = {

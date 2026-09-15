@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
-  environment.systemPackages = [
-    pkgs.vesktop
+  environment.systemPackages = with pkgs; [
+    vesktop
 
-    (pkgs.writeShellScriptBin "xkeen-dscp" ''
+    (writeShellScriptBin "xkeen-dscp" ''
       DSCP_VALUE="61"
       SLICE_NAME="xkeen.slice"
       TABLE_NAME="dscp_$DSCP_VALUE"
