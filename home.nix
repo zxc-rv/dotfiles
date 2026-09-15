@@ -8,7 +8,20 @@
     packages = with pkgs; [
       (writeShellScriptBin "xkeen-run" (builtins.readFile ./scripts/xkeen-run))
       (writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
+      ayugram-desktop
+      dysk
+      fastfetch
+      fetch
+      gamescope
+      helix
+      lazygit
+      mpv
+      nwg-look
+      protonplus
+      qbittorrent
+      umu-launcher
       vesktop
+      vial
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/share/applications"

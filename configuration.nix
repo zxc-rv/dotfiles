@@ -124,33 +124,25 @@
     sessionVariables.QS_ICON_THEME = "hicolor";
     systemPackages = with pkgs; [
       adwaita-icon-theme
-      ayugram-desktop
       btop
       bun
       codex
       cups-pk-helper
-      dysk
-      fastfetch
       fd
-      fetch
       ffmpeg
       foot
       fzf
-      gamescope
       gcc
       go
       gtk3
       gtk4
       gum
-      helix
       htop
       jq
       just
       kdePackages.breeze
       kdePackages.qt6ct
       knot-dns
-      lazygit
-      mpv
       nautilus
       nftables
       nh
@@ -158,20 +150,15 @@
       nixfmt
       nodejs
       nvtopPackages.nvidia
-      nwg-look
       opencode
-      protonplus
       python3
-      qbittorrent
       ripgrep
       rustup
       statix
       tcpdump
       tree-sitter
       udiskie
-      umu-launcher
       unzip
-      vial
       wget
       wl-clip-persist
       wl-clipboard
