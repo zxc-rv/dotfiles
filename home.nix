@@ -9,19 +9,49 @@
       (writeShellScriptBin "xkeen-run" (builtins.readFile ./scripts/xkeen-run))
       (writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
       ayugram-desktop
+      btop
+      bun
+      codex
       dysk
       fastfetch
+      fd
       fetch
+      ffmpeg
+      foot
+      fzf
       gamescope
+      gcc
+      go
+      gum
       helix
+      htop
+      jq
+      just
       lazygit
       mpv
+      nh
+      nil
+      nixfmt
+      nodejs
+      nvtopPackages.nvidia
       nwg-look
+      opencode
       protonplus
+      python3
       qbittorrent
+      ripgrep
+      rustup
+      statix
+      tcpdump
+      tree-sitter
+      udiskie
       umu-launcher
+      unzip
       vesktop
       vial
+      wl-clip-persist
+      wl-clipboard
+      knot-dns
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/share/applications"
@@ -44,6 +74,7 @@
         flyline set-cursor --backend terminal
       '';
     };
+    starship.enable = true;
     git = {
       enable = true;
       settings.user = {

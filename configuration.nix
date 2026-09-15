@@ -124,44 +124,14 @@
     sessionVariables.QS_ICON_THEME = "hicolor";
     systemPackages = with pkgs; [
       adwaita-icon-theme
-      btop
-      bun
-      codex
       cups-pk-helper
-      fd
-      ffmpeg
-      foot
-      fzf
-      gcc
-      go
       gtk3
       gtk4
-      gum
-      htop
-      jq
-      just
       kdePackages.breeze
       kdePackages.qt6ct
-      knot-dns
       nautilus
       nftables
-      nh
-      nil
-      nixfmt
-      nodejs
-      nvtopPackages.nvidia
-      opencode
-      python3
-      ripgrep
-      rustup
-      statix
-      tcpdump
-      tree-sitter
-      udiskie
-      unzip
       wget
-      wl-clip-persist
-      wl-clipboard
       xwayland-satellite
     ];
   };
@@ -199,7 +169,6 @@
       };
     };
     flyline.enable = true;
-    starship.enable = true;
     steam.enable = true;
     nix-ld.enable = true;
     neovim = {
