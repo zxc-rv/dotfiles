@@ -6,7 +6,7 @@
     stateVersion = "26.05";
     file.".config/mpv".source = ./.config/mpv;
     packages = [
-      (pkgs.writeShellScriptBin "cs" (builtins.readfile ./scripts/cs))
+      (pkgs.writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
     ];
   };
   programs = {
