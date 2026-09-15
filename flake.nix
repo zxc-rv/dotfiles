@@ -8,10 +8,6 @@
       url = "github:oxcl/nix-flake-helium-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +19,6 @@
       cachyos-kernel,
       flyline,
       helium-browser,
-      dms,
       home-manager,
       ...
     }:
@@ -32,7 +27,6 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
-          dms.nixosModules.dank-material-shell
           flyline.nixosModules.default
           home-manager.nixosModules.home-manager
           {

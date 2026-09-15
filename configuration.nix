@@ -161,15 +161,9 @@
   programs = {
     nano.enable = false;
     niri.enable = true;
-    dank-material-shell = {
-      enable = true;
-      systemd = {
-        enable = true;
-        restartIfChanged = true;
-      };
-    };
-    flyline.enable = true;
+    dms-shell.enable = true;
     steam.enable = true;
+    flyline.enable = true;
     nix-ld.enable = true;
     neovim = {
       enable = true;
@@ -189,5 +183,4 @@
 
   # system.copySystemConfiguration = true; # (/run/current-system/configuration.nix)
   system.stateVersion = "26.05";
-
 }
