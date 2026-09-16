@@ -133,6 +133,7 @@
       nftables
       wget
       xwayland-satellite
+      gpu-screen-recorder
     ];
   };
 
