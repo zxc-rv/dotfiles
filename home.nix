@@ -52,6 +52,7 @@
       vial
       wl-clip-persist
       wl-clipboard
+      gpu-screen-recorder-gtk
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/share/applications"
