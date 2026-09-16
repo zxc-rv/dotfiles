@@ -133,7 +133,6 @@
       nftables
       wget
       xwayland-satellite
-      gpu-screen-recorder
     ];
   };
 
@@ -166,6 +165,7 @@
     steam.enable = true;
     flyline.enable = true;
     nix-ld.enable = true;
+    gpu-screen-recorder.enable = true;
     neovim = {
       enable = true;
       defaultEditor = true;
