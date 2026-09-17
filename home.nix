@@ -134,6 +134,7 @@
         include dank-theme.conf
       '';
     };
+    vicinae.enable = true;
     imv.enable = true;
     opencode.enable = true;
   };
