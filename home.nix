@@ -136,7 +136,6 @@
     };
     vicinae = {
       enable = true;
-      userLayerShell = false;
       settings = {
         pop_to_root_on_close = true;
         escape_key_behavior = "close_window";
@@ -144,6 +143,9 @@
         launcher_window = {
           opacity = 1;
           client_side_decorations = {
+            enabled = false;
+          };
+          layer_shell = {
             enabled = false;
           };
         };
