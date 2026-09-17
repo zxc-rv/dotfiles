@@ -141,7 +141,7 @@
         escape_key_behavior = "close_window";
         close_on_focus_loss = true;
         launcher_window = {
-          opacity = 1;
+          opacity = 0.9;
           client_side_decorations = {
             enabled = false;
           };
