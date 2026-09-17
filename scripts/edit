@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+case "$1" in
+  16-20) ruleset="16-20" ;;
+  bs) ruleset="blocked-sites" ;;
+  *) echo "usage: edit 16-20|bs" >&2; exit 1 ;;
+esac
+
+nvim "scp://root@sun//var/www/assets/rules/${ruleset}@domain.text"
+
+read -rp "компилить? [y/N] " answer
+[[ "$answer" =~ ^[Yy]$ ]] || exit 0
+
+ssh sun "mihomo convert-ruleset domain text ${ruleset}@domain.text ${ruleset}@domain.mrs"
+
+curl -X PUT "http://192.168.1.1:1000/clash/providers/rules/${ruleset}%40domain"

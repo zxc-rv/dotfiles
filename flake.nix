@@ -33,7 +33,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              backupFileExtension = "backup";
+              # backupFileExtension = "backup";
               users.rv = import ./home.nix;
             };
           }
