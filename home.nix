@@ -137,16 +137,16 @@
     vicinae = {
       enable = true;
       userLayerShell = false;
-      launcher_window = {
-        opacity = 1;
-        client_side_decorations = {
-          enabled = false;
-        };
-      };
       settings = {
         pop_to_root_on_close = true;
         escape_key_behavior = "close_window";
         close_on_focus_loss = true;
+        launcher_window = {
+          opacity = 1;
+          client_side_decorations = {
+            enabled = false;
+          };
+        };
         font = {
           normal = {
             family = "Inter Display Medium";
