@@ -134,7 +134,27 @@
         include dank-theme.conf
       '';
     };
-    vicinae.enable = true;
+    vicinae = {
+      enable = true;
+      userLayerShell = false;
+      launcher_window = {
+        opacity = 1;
+        client_side_decorations = {
+          enabled = false;
+        };
+      };
+      settings = {
+        pop_to_root_on_close = true;
+        escape_key_behavior = "close_window";
+        close_on_focus_loss = true;
+        font = {
+          normal = {
+            family = "Inter Display Medium";
+            size = 10.5;
+          };
+        };
+      };
+    };
     imv.enable = true;
     opencode.enable = true;
   };
