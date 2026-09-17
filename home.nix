@@ -55,6 +55,7 @@
       vial
       wl-clip-persist
       wl-clipboard
+      opencode-desktop
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/share/applications"
@@ -138,6 +139,6 @@
     };
     vicinae.enable = true;
     imv.enable = true;
-    opencode.enable = true;
+    # opencode.enable = true;
   };
 }
