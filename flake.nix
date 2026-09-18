@@ -46,14 +46,14 @@
             programs.helium = {
               enable = true;
               # flags = [ "--enable-features=VaapiOnNvidiaGPUs" ];
-              # policies = {
-              #   ExtensionInstallForcelist = [
-              #     "ghmbeldphafepmbegfdlkpapadhbakde"
-              #     # "ajopnjidmegmdimjlfnijceegpefgped"
-              #     # "mnjggcdmjocbbbhaepdhchncahnbgone"
-              #     # "gkeojjjcdcopjkbelgbcpckplegclfeg"
-              #   ];
-              # };
+              policies = {
+                ExtensionInstallForcelist = [
+                  "ghmbeldphafepmbegfdlkpapadhbakde"
+                  # "ajopnjidmegmdimjlfnijceegpefgped"
+                  # "mnjggcdmjocbbbhaepdhchncahnbgone"
+                  # "gkeojjjcdcopjkbelgbcpckplegclfeg"
+                ];
+              };
             };
           })
         ];

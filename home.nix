@@ -68,6 +68,7 @@
       wl-clip-persist
       wl-clipboard
       opencode-desktop
+      pkgsCross.aarch64-multiplatform-musl.stdenv.cc
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/share/applications"
@@ -84,6 +85,7 @@
         lg = "lazygit";
         e = "nvim";
         ii = "ipinfo";
+        j = "just";
       };
       bashrcExtra = ''
         flyline editor --show-inline-history-metadata false
