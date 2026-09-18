@@ -26,7 +26,7 @@
       nixosConfigurations.revolution-pc = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
+          ./config.nix
           flyline.nixosModules.default
           home-manager.nixosModules.home-manager
           {
@@ -45,15 +45,15 @@
             ];
             programs.helium = {
               enable = true;
-              flags = [ "--enable-features=VaapiOnNvidiaGPUs" ];
-              policies = {
-                ExtensionInstallForcelist = [
-                  "ajopnjidmegmdimjlfnijceegpefgped"
-                  "ghmbeldphafepmbegfdlkpapadhbakde"
-                  "mnjggcdmjocbbbhaepdhchncahnbgone"
-                  "gkeojjjcdcopjkbelgbcpckplegclfeg"
-                ];
-              };
+              # flags = [ "--enable-features=VaapiOnNvidiaGPUs" ];
+              # policies = {
+              #   ExtensionInstallForcelist = [
+              #     "ghmbeldphafepmbegfdlkpapadhbakde"
+              #     # "ajopnjidmegmdimjlfnijceegpefgped"
+              #     # "mnjggcdmjocbbbhaepdhchncahnbgone"
+              #     # "gkeojjjcdcopjkbelgbcpckplegclfeg"
+              #   ];
+              # };
             };
           })
         ];

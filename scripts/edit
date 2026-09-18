@@ -18,4 +18,6 @@ read -rp "компилить? [y/N] " answer
 
 ssh sun "cd /var/www/assets/rules && mihomo convert-ruleset domain text ${ruleset}@domain.text ${ruleset}@domain.mrs"
 
-curl -X PUT "http://192.168.1.1:1000/clash/providers/rules/${ruleset}%40domain"
+curl -X PUT http://192.168.1.1:1000/clash/providers/rules/${ruleset}%40domain \
+  -b "session_id=${SESSION_ID}" \
+  -H "X-Clash-Unix: mihomo.sock"

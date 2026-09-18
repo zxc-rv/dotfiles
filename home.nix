@@ -9,6 +9,18 @@
       (writeShellScriptBin "xkeen-run" (builtins.readFile ./scripts/xkeen-run))
       (writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
       (writeShellScriptBin "edit" (builtins.readFile ./scripts/edit))
+      (pkgs.stdenv.mkDerivation {
+        pname = "oniri";
+        version = "1.3.5";
+        src = pkgs.fetchurl {
+          url = "https://github.com/Antiz96/oniri/releases/download/v1.3.5/oniri-1.3.5-x86_64";
+          hash = "sha256-ZmfT8FP0Aiek5LS0a9qEi+YxWasn128AHpzXNuFeRA0=";
+        };
+        dontUnpack = true;
+        installPhase = ''
+          install -Dm755 $src $out/bin/oniri
+        '';
+      })
       ayugram-desktop
       btop
       bun
@@ -68,7 +80,7 @@
     bash = {
       enable = true;
       shellAliases = {
-        sns = "sudo nixos-rebuild switch --impure --flake /home/rv/dotfiles#revolution-pc";
+        sns = "sudo nixos-rebuild switch --impure --flake path:/home/rv/dotfiles#revolution-pc";
         lg = "lazygit";
         e = "nvim";
         ii = "ipinfo";
