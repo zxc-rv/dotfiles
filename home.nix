@@ -9,6 +9,7 @@
       (writeShellScriptBin "xkeen-run" (builtins.readFile ./scripts/xkeen-run))
       (writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
       (writeShellScriptBin "edit" (builtins.readFile ./scripts/edit))
+      (writeShellScriptBin "record" (builtins.readFile ./scripts/record))
       (pkgs.stdenv.mkDerivation {
         pname = "oniri";
         version = "1.3.5";
@@ -34,6 +35,7 @@
       fzf
       gamescope
       gcc
+      gifski
       go
       gpu-screen-recorder-gtk
       gum
@@ -44,6 +46,7 @@
       just
       knot-dns
       lazygit
+      libnotify
       localsend
       mpv
       nh
@@ -52,11 +55,13 @@
       nodejs
       nvtopPackages.nvidia
       nwg-look
+      pkgsCross.aarch64-multiplatform-musl.stdenv.cc
       protonplus
       python3
       qbittorrent
       ripgrep
       rustup
+      slurp
       statix
       tcpdump
       tree-sitter
@@ -65,10 +70,9 @@
       unzip
       vesktop
       vial
+      wf-recorder
       wl-clip-persist
       wl-clipboard
-      opencode-desktop
-      pkgsCross.aarch64-multiplatform-musl.stdenv.cc
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       mkdir -p "$HOME/.local/share/applications"
@@ -78,6 +82,11 @@
     '';
   };
   programs = {
+    vicinae.enable = true;
+    imv.enable = true;
+    satty.enable = true;
+    opencode.enable = true;
+    starship.enable = true;
     bash = {
       enable = true;
       shellAliases = {
@@ -93,7 +102,6 @@
         flyline set-cursor --backend terminal
       '';
     };
-    starship.enable = true;
     git = {
       enable = true;
       settings.user = {
@@ -151,8 +159,5 @@
         include dank-theme.conf
       '';
     };
-    vicinae.enable = true;
-    imv.enable = true;
-    # opencode.enable = true;
   };
 }

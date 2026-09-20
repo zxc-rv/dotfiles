@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+mode="$1"
+output_dir="$HOME/Videos/records"
+mkdir -p "$output_dir"
+
+if pgrep -x wf-recorder >/dev/null; then
+  kill -INT "$(pgrep -x wf-recorder)"
+  while pgrep -x wf-recorder >/dev/null; do sleep 0.2; done
+
+  last_file=$(ls -t "$output_dir"/*.mp4 | head -n1)
+
+  if [ "$mode" = "gif" ]; then
+    gif_file="${last_file%.mp4}.gif"
+    gifski -o "$gif_file" "$last_file"
+    printf 'file://%s' "$gif_file" | wl-copy --type text/uri-list
+    notify-send "Гифка готова" "В буфере"
+  else
+    printf 'file://%s' "$last_file" | wl-copy --type text/uri-list
+    notify-send "Видео готово" "В буфере"
+  fi
+else
+  geometry=$(slurp)
+  [ -z "$geometry" ] && exit 1
+  setsid wf-recorder -g "$geometry" -f "$output_dir/recording-$(date +%Y%m%d-%H%M%S).mp4" >/dev/null 2>&1 </dev/null &
+  disown
+  notify-send "Запись пошла"
+fi
