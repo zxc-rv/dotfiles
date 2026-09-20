@@ -164,6 +164,22 @@
           lockFile = "${src}/Cargo.lock";
         };
       });
+      niri =
+        let
+          niriSrc = prev.fetchFromGitHub {
+            owner = "neunato";
+            repo = "niri";
+            rev = "fill-empty-space";
+            hash = "sha256-MWMajitHZ1LMjJR+VV0jGpnN8BgDIDbfZE8vhIN9B8U=";
+          };
+        in
+        prev.niri.overrideAttrs (old: {
+          src = niriSrc;
+          cargoDeps = prev.rustPlatform.fetchCargoVendor {
+            src = niriSrc;
+            hash = "sha256-HypBB3PL4nVFMNH2+jEK0+dG9dJ920nHi8GwRoeH/v4=";
+          };
+        });
     })
   ];
 

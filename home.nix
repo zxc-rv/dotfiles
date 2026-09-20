@@ -10,6 +10,7 @@
       (writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
       (writeShellScriptBin "edit" (builtins.readFile ./scripts/edit))
       (writeShellScriptBin "record" (builtins.readFile ./scripts/record))
+      (writeShellScriptBin "games-idle-inhibition" (builtins.readFile ./scripts/games-idle-inhibition))
       (pkgs.stdenv.mkDerivation {
         pname = "oniri";
         version = "1.3.5";
