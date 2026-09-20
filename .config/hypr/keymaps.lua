@@ -1,6 +1,6 @@
 local terminal = "kitty -1"
 local fileManager = "nautilus"
-local browser = "brave-origin-nightly --ozone-platform=x11"
+local browser = "helium"
 -- local browser = "brave-origin-nightly"
 local launcher = "vicinae toggle"
 -- local launcher = "noctalia msg panel-toggle launcher"
@@ -68,52 +68,61 @@ hl.bind("ALT + CTRL + D", hl.dsp.layout("swapcol r"))
 -- 	local key = i % 10 -- 10 maps to key 0
 -- 	hl.bind("ALT + " .. key, hl.dsp.focus({ workspace = i }))
 -- 	hl.bind("ALT + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
-local function focus_and_warp(monitor_name)
+local function get_sorted_monitors()
+	local monitors = hl.get_monitors()
+	table.sort(monitors, function(first, second)
+		return first.x < second.x
+	end)
+	return monitors
+end
+
+local function warp_cursor_to_monitor(monitor)
+	hl.dispatch(hl.dsp.cursor.move({
+		x = monitor.x + monitor.width / 2,
+		y = monitor.y + monitor.height / 2,
+	}))
+end
+
+local function focus_and_warp(monitor_index)
 	return function()
-		local monitor = hl.get_monitor(monitor_name)
+		local monitor = get_sorted_monitors()[monitor_index]
 		if monitor == nil then
 			return
 		end
-		hl.dispatch(hl.dsp.focus({ monitor = monitor_name }))
-		hl.dispatch(hl.dsp.cursor.move({
-			x = monitor.x + monitor.width / 2,
-			y = monitor.y + monitor.height / 2,
-		}))
+		hl.dispatch(hl.dsp.focus({ monitor = monitor.name }))
+		warp_cursor_to_monitor(monitor)
 	end
 end
-hl.bind("ALT + Tab", hl.dsp.focus({ workspace = "previous" }))
-hl.bind("SUPER + 1", focus_and_warp("DP-2"))
-hl.bind("SUPER + 2", focus_and_warp("DP-1"))
-hl.bind("SUPER + CTRL + 1", hl.dsp.window.move({ monitor = "DP-2" }))
-hl.bind("SUPER + CTRL + 2", hl.dsp.window.move({ monitor = "DP-1" }))
 
-local ws_monitors = {
-	[1] = "DP-2",
-	[2] = "DP-2",
-	[3] = "DP-2",
-	[4] = "DP-2",
-	[5] = "DP-2",
-	[6] = "DP-1",
-	[7] = "DP-1",
-	[8] = "DP-1",
-	[9] = "DP-1",
-}
+local function move_window_to_monitor(monitor_index)
+	return function()
+		local monitor = get_sorted_monitors()[monitor_index]
+		if monitor == nil then
+			return
+		end
+		hl.dispatch(hl.dsp.window.move({ monitor = monitor.name }))
+	end
+end
+
+hl.bind("ALT + Tab", hl.dsp.focus({ workspace = "previous" }))
+hl.bind("SUPER + 1", focus_and_warp(1))
+hl.bind("SUPER + 2", focus_and_warp(2))
+hl.bind("SUPER + CTRL + 1", move_window_to_monitor(1))
+hl.bind("SUPER + CTRL + 2", move_window_to_monitor(2))
 
 local function focus_workspace(ws)
-	local mon_name = ws_monitors[ws]
-	if mon_name then
-		hl.dispatch(hl.dsp.focus({ monitor = mon_name }))
-	end
-
 	hl.dispatch(hl.dsp.focus({ workspace = ws }))
 
-	if mon_name then
-		local mon = hl.get_monitor(mon_name)
-		if mon then
-			hl.dispatch(hl.dsp.cursor.move({
-				x = mon.x + mon.width / 2,
-				y = mon.y + mon.height / 2,
-			}))
+	for _, workspace in ipairs(hl.get_workspaces()) do
+		if tonumber(workspace.id) == ws then
+			local mon = hl.get_monitor(workspace.monitor)
+			if mon then
+				hl.dispatch(hl.dsp.cursor.move({
+					x = mon.x + mon.width / 2,
+					y = mon.y + mon.height / 2,
+				}))
+			end
+			break
 		end
 	end
 end
@@ -184,6 +193,8 @@ hl.bind("ALT + period", hl.dsp.layout("consume_or_expel next"))
 -- 		[[hyprctl clients -j | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | slurp -c '#00e993ff' -w 2 | xargs -I{} grim -g "{}" - | tensaku --filename -]]
 -- 	)
 -- )
-hl.bind("CTRL + SHIFT + 1", hl.dsp.exec_cmd("noctalia msg screenshot-region"))
+hl.bind("CTRL + SHIFT + 1", hl.dsp.exec_cmd("dms screenshot"))
+hl.bind("CTRL + SHIFT + 2", hl.dsp.exec_cmd("record video"))
+hl.bind("CTRL + SHIFT + 3", hl.dsp.exec_cmd("record gif"))
 hl.bind("SUPER + E", hl.dsp.exec_cmd("wl-paste -t image/png | tensaku -f -"))
 hl.bind("CTRL + SUPER + S", hl.dsp.exec_cmd("noctalia msg plugin noctalia/screen_recorder:service all toggle"))

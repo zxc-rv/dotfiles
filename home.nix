@@ -65,13 +65,11 @@
       statix
       tcpdump
       tree-sitter
-      udiskie
       umu-launcher
       unzip
       vesktop
       vial
       wf-recorder
-      wl-clip-persist
       wl-clipboard
     ];
     activation.xkeenVesktopDesktop = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -81,8 +79,14 @@
         > "$HOME/.local/share/applications/vesktop.desktop"
     '';
   };
+  services = {
+    wl-clip-persist.enable = true;
+    udiskie.enable = true;
+    udiskie.tray = "never";
+  };
   programs = {
     vicinae.enable = true;
+    vicinae.systemd.enable = true;
     imv.enable = true;
     satty.enable = true;
     opencode.enable = true;

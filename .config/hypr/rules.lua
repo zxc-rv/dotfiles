@@ -2,16 +2,16 @@
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
 
-hl.workspace_rule({ workspace = "1", monitor = "DP-2", default = true, persistent = true })
+hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true, persistent = true })
 hl.workspace_rule({ workspace = "2", monitor = "DP-2", persistent = true })
-hl.workspace_rule({ workspace = "3", monitor = "DP-2", persistent = true })
-hl.workspace_rule({ workspace = "4", monitor = "DP-2", persistent = true })
-hl.workspace_rule({ workspace = "5", monitor = "DP-2", persistent = true })
-hl.workspace_rule({ workspace = "6", monitor = "DP-1", persistent = true })
-hl.workspace_rule({ workspace = "7", monitor = "DP-1", persistent = true })
-hl.workspace_rule({ workspace = "8", monitor = "DP-1", persistent = true })
-hl.workspace_rule({ workspace = "9", monitor = "DP-1", persistent = true })
-hl.workspace_rule({ workspace = "10", monitor = "DP-1", persistent = true })
+-- hl.workspace_rule({ workspace = "3", monitor = "DP-1", persistent = true })
+-- hl.workspace_rule({ workspace = "4", monitor = "DP-1", persistent = true })
+-- hl.workspace_rule({ workspace = "5", monitor = "DP-1", persistent = true })
+-- hl.workspace_rule({ workspace = "6", monitor = "DP-2", persistent = true })
+-- hl.workspace_rule({ workspace = "7", monitor = "DP-2", persistent = true })
+-- hl.workspace_rule({ workspace = "8", monitor = "DP-2", persistent = true })
+-- hl.workspace_rule({ workspace = "9", monitor = "DP-2", persistent = true })
+-- hl.workspace_rule({ workspace = "10", monitor = "DP-2", persistent = true })
 -- hl.workspace_rule({ workspace = "name:G", monitor = "DP-2" })
 -- hl.workspace_rule({ workspace = "5", monitor = "DP-2", persistent = true })
 --
@@ -57,7 +57,7 @@ hl.layer_rule({
 })
 
 hl.layer_rule({
-	match = { namespace = ".*noctalia.*" },
+	match = { namespace = ".*noctalia.*|dms:.*" },
 	no_anim = true,
 })
 
@@ -114,7 +114,7 @@ hl.window_rule({
 })
 hl.window_rule({
 	match = {
-		title = "Открытие файлов|Открывается сайт.*|.*запрашивает сохранение",
+		title = "Открытие файлов|Открывается сайт.*|.*запрашивает сохранение|Select what to share",
 	},
 	float = true,
 	no_shadow = true,
@@ -127,7 +127,7 @@ hl.window_rule({
 	no_shadow = true,
 })
 hl.window_rule({
-	match = { class = "[Xx]dg-desktop-portal-gtk|hyprland-share-picker" },
+	match = { class = "[Xx]dg-desktop-portal-.*|hyprland-share-picker" },
 	float = true,
 	no_shadow = true,
 	center = true,

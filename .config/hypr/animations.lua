@@ -8,7 +8,7 @@ hl.curve("noOvershot", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1 } }
 hl.curve("niri", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })
 hl.curve("smoothOut", { type = "bezier", points = { { 0.36, 0 }, { 0.66, -0.56 } } })
 hl.curve("horizontalView", { type = "spring", mass = 1, stiffness = 800, dampening = 67 })
-hl.curve("openSpring", { type = "spring", mass = 1, stiffness = 450, dampening = 50 })
+hl.curve("openSpring", { type = "spring", mass = 1, stiffness = 500, dampening = 50 })
 hl.curve("closeSpring", { type = "spring", mass = 1, stiffness = 600, dampening = 50 })
 hl.curve("openLayerSpring", { type = "spring", mass = 1, stiffness = 500, dampening = 50 })
 hl.curve("closeLayerSpring", { type = "spring", mass = 1, stiffness = 500, dampening = 50 })
@@ -17,8 +17,7 @@ hl.curve("easy", { type = "spring", mass = 1, stiffness = 71.2633, dampening = 1
 
 hl.animation({ leaf = "global", enabled = true, speed = 10, bezier = "default" })
 hl.animation({ leaf = "border", enabled = true, speed = 5, bezier = "easeOutQuint" })
-hl.animation({ leaf = "windows", enabled = true, speed = 1, spring = "horizontalView" })
-hl.animation({ leaf = "windowsIn", enabled = true, speed = 1, spring = "openSpring", style = "popin 30%" })
+hl.animation({ leaf = "windows", enabled = true, speed = 1, spring = "openSpring", style = "popin 30%" })
 hl.animation({ leaf = "windowsOut", enabled = true, speed = 1, spring = "closeSpring", style = "popin 80%" })
 hl.animation({ leaf = "fade", enabled = true, speed = 3, bezier = "quick" })
 hl.animation({ leaf = "fadeIn", enabled = true, speed = 3, bezier = "quick" })
