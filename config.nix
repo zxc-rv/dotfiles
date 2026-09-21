@@ -10,7 +10,6 @@
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
-    ./nvidia.nix
   ];
 
   nix.settings = {
@@ -33,22 +32,9 @@
     kernel.sysctl."net.ipv4.tcp_congestion_control" = "bbr3";
     # kernelPackages = pkgs.linuxPackages_zen;
     kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
-    supportedFilesystems = [ "ntfs" ];
-  };
-
-  fileSystems."/mnt/vault" = {
-    device = "/dev/disk/by-uuid/F09803759803399C";
-    fsType = "ntfs3";
-    options = [
-      "uid=1000"
-      "gid=100"
-      "umask=022"
-      "x-gvfs-show"
-    ];
   };
 
   networking = {
-    hostName = "revolution-pc";
     networkmanager.enable = true;
     firewall.enable = false;
   };

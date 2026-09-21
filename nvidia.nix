@@ -2,7 +2,7 @@
 {
   services = {
     xserver.videoDrivers = [ "nvidia" ];
-    # lact.enable = true;
+    lact.enable = true;
   };
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.latest;

@@ -26,6 +26,7 @@
       ayugram-desktop
       btop
       bun
+      bash-completion
       codex
       dysk
       fastfetch
@@ -96,6 +97,7 @@
       enable = true;
       shellAliases = {
         sns = "sudo nixos-rebuild switch --impure --flake path:/home/rv/dotfiles#revolution-pc";
+        update = "nix flake update --flake path:/home/rv/dotfiles && sudo nixos-rebuild switch --impure --flake path:/home/rv/dotfiles#revolution-pc";
         lg = "lazygit";
         e = "nvim";
         ii = "ipinfo";
@@ -105,6 +107,8 @@
         flyline editor --show-inline-history-metadata false
         flyline mouse --mode disabled
         flyline set-cursor --backend terminal
+        flyline key bind Enter 'tabCompletionEntrySelected=tabCompletionAcceptEntry+submitOrNewline'
+        flyline key bind Tab 'tabCompletionEntrySelected=tabCompletionAcceptEntry'
       '';
     };
     git = {
@@ -116,37 +120,38 @@
     };
     kitty = {
       enable = true;
+      # shellIntegration.mode = null;
       settings = {
         auto_reload_config = "0.1";
-        confirm_os_window_close = "0";
-        dynamic_background_opacity = "yes";
-        input_delay = "0";
-        remember_window_size = "no";
-        repaint_delay = "2";
-        sync_to_monitor = "no";
-        url_style = "curly";
-        wayland_enable_ime = "no";
-        window_padding_width = "20";
-        tab_bar_edge = "bottom";
-        tab_bar_style = "powerline";
-        tab_powerline_style = "angled";
-        background_opacity = "0.8";
         background_blur = "1";
-        scrollback_lines = "10000";
-        wheel_scroll_multiplier = "3.0";
-        font_size = "11.5";
-        font_family = "JetBrainsMono Nerd Font";
+        background_opacity = "0.8";
         bold_font = "auto";
-        italic_font = "auto";
         bold_italic_font = "auto";
+        confirm_os_window_close = "0";
+        copy_on_select = "clipboard";
         cursor_blink_interval = "0";
         cursor_shape = "block";
         cursor_trail = "1";
         cursor_trail_decay = "0.01 0.4";
+        dynamic_background_opacity = "yes";
+        font_family = "JetBrainsMono Nerd Font";
+        font_size = "11.5";
+        input_delay = "0";
+        italic_font = "auto";
         mouse_hide_wait = "3.0";
-        copy_on_select = "clipboard";
         paste_actions = "quote-urls-at-prompt";
+        remember_window_size = "no";
+        repaint_delay = "2";
+        scrollback_lines = "10000";
         select_by_word_characters = ",│`|:\"' ()[]{}<>";
+        sync_to_monitor = "no";
+        tab_bar_edge = "bottom";
+        tab_bar_style = "powerline";
+        tab_powerline_style = "angled";
+        url_style = "curly";
+        wayland_enable_ime = "no";
+        wheel_scroll_multiplier = "3.0";
+        window_padding_width = "20";
       };
       keybindings = {
         "ctrl+v" = "paste_from_clipboard";

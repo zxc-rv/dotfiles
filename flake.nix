@@ -22,11 +22,12 @@
       home-manager,
       ...
     }:
-    {
-      nixosConfigurations.revolution-pc = nixpkgs.lib.nixosSystem {
+    let
+      mkHost = hostname: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./config.nix
+          ./hosts/${hostname}.nix
           flyline.nixosModules.default
           home-manager.nixosModules.home-manager
           {
@@ -58,5 +59,9 @@
           })
         ];
       };
+    in
+    {
+      nixosConfigurations.revolution-pc = mkHost "revolution-pc";
+      nixosConfigurations.revolution-lt = mkHost "revolution-lt";
     };
 }
