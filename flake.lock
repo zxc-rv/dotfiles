@@ -173,13 +173,34 @@
         "url": "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst"
       }
     },
+    "oniri": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789981212,
+        "narHash": "sha256-63cvYy0IKGEPSwae+SKBBW/CFfQzd68TQD8mc27DTyg=",
+        "owner": "Antiz96",
+        "repo": "oniri",
+        "rev": "83f24c0849bd7c9fc004cd27afd4d827ffcc797c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Antiz96",
+        "repo": "oniri",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "cachyos-kernel": "cachyos-kernel",
         "flyline": "flyline",
         "helium-browser": "helium-browser",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "oniri": "oniri"
       }
     }
   },

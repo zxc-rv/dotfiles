@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  oniri,
+  ...
+}:
 {
   home = {
     username = "rv";
@@ -11,18 +16,7 @@
       (writeShellScriptBin "edit" (builtins.readFile ./scripts/edit))
       (writeShellScriptBin "record" (builtins.readFile ./scripts/record))
       (writeShellScriptBin "games-idle-inhibition" (builtins.readFile ./scripts/games-idle-inhibition))
-      (pkgs.stdenv.mkDerivation {
-        pname = "oniri";
-        version = "1.3.5";
-        src = pkgs.fetchurl {
-          url = "https://github.com/Antiz96/oniri/releases/download/v1.3.5/oniri-1.3.5-x86_64";
-          hash = "sha256-ZmfT8FP0Aiek5LS0a9qEi+YxWasn128AHpzXNuFeRA0=";
-        };
-        dontUnpack = true;
-        installPhase = ''
-          install -Dm755 $src $out/bin/oniri
-        '';
-      })
+      oniri.packages.${pkgs.stdenv.hostPlatform.system}.default
       ayugram-desktop
       btop
       bun

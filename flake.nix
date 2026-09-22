@@ -12,6 +12,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    oniri = {
+      url = "github:Antiz96/oniri";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     {
@@ -20,45 +24,49 @@
       flyline,
       helium-browser,
       home-manager,
+      oniri,
       ...
     }:
     let
-      mkHost = hostname: nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./config.nix
-          ./hosts/${hostname}.nix
-          flyline.nixosModules.default
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              # backupFileExtension = "backup";
-              users.rv = import ./home.nix;
-            };
-          }
-          helium-browser.nixosModules.default
-          ({ pkgs, ... }: {
-            nixpkgs.overlays = [
-              helium-browser.overlays.default
-              cachyos-kernel.overlays.pinned
-            ];
-            programs.helium = {
-              enable = true;
-              # flags = [ "--enable-features=VaapiOnNvidiaGPUs" ];
-              policies = {
-                ExtensionInstallForcelist = [
-                  "ghmbeldphafepmbegfdlkpapadhbakde"
-                  # "ajopnjidmegmdimjlfnijceegpefgped"
-                  # "mnjggcdmjocbbbhaepdhchncahnbgone"
-                  # "gkeojjjcdcopjkbelgbcpckplegclfeg"
-                ];
+      mkHost =
+        hostname:
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./config.nix
+            ./hosts/${hostname}.nix
+            flyline.nixosModules.default
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                # backupFileExtension = "backup";
+                extraSpecialArgs = { inherit oniri; };
+                users.rv = import ./home.nix;
               };
-            };
-          })
-        ];
-      };
+            }
+            helium-browser.nixosModules.default
+            ({ pkgs, ... }: {
+              nixpkgs.overlays = [
+                helium-browser.overlays.default
+                cachyos-kernel.overlays.pinned
+              ];
+              programs.helium = {
+                enable = true;
+                # flags = [ "--enable-features=VaapiOnNvidiaGPUs" ];
+                policies = {
+                  ExtensionInstallForcelist = [
+                    "ghmbeldphafepmbegfdlkpapadhbakde"
+                    # "ajopnjidmegmdimjlfnijceegpefgped"
+                    # "mnjggcdmjocbbbhaepdhchncahnbgone"
+                    # "gkeojjjcdcopjkbelgbcpckplegclfeg"
+                  ];
+                };
+              };
+            })
+          ];
+        };
     in
     {
       nixosConfigurations.revolution-pc = mkHost "revolution-pc";
