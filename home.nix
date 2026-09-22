@@ -51,7 +51,6 @@
       libnotify
       localsend
       mpv
-      nh
       nil
       nixfmt
       nodejs
@@ -89,6 +88,14 @@
   programs = {
     vicinae.enable = true;
     vicinae.systemd.enable = true;
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = [
+        "--keep"
+        "10"
+      ];
+    };
     imv.enable = true;
     satty.enable = true;
     opencode.enable = true;
