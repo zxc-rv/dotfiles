@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-repository_url="https://github.com/zxc-rv/dotfiles"
+repository_url="https://github.com/zxc-rv/nix"
 repository_subdirectory=".config"
 target_directory="$HOME/.config"
 if ! command -v gum >/dev/null; then

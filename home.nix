@@ -96,8 +96,8 @@
     bash = {
       enable = true;
       shellAliases = {
-        sns = "sudo nixos-rebuild switch --impure --flake path:/home/rv/dotfiles#revolution-pc";
-        update = "nix flake update --flake path:/home/rv/dotfiles && sudo nixos-rebuild switch --impure --flake path:/home/rv/dotfiles#revolution-pc";
+        sns = "sudo nixos-rebuild switch --impure --flake path:/home/rv/nix#revolution-pc";
+        update = "nix flake update --flake path:/home/rv/nix && sudo nixos-rebuild switch --impure --flake path:/home/rv/nix#revolution-pc";
         lg = "lazygit";
         e = "nvim";
         ii = "ipinfo";
