@@ -121,6 +121,7 @@
       cups-pk-helper
       gtk3
       gtk4
+      glib
       kdePackages.breeze
       kdePackages.qt6ct
       nautilus

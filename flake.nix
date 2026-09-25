@@ -55,6 +55,10 @@
               programs.helium = {
                 enable = true;
                 # flags = [ "--enable-features=VaapiOnNvidiaGPUs" ];
+                flags = [
+                  "--enable-features=HeliumMiddleClickAutoscroll,EnableTLS13EarlyData"
+                  "--disable-features=OverlayScrollbar"
+                ];
                 policies = {
                   ExtensionInstallForcelist = [
                     "ghmbeldphafepmbegfdlkpapadhbakde"

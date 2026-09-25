@@ -9,7 +9,8 @@
     username = "rv";
     homeDirectory = "/home/rv";
     stateVersion = "26.05";
-    file.".config/mpv".source = ./.config/mpv;
+    # file.".config/mpv".source = ./.config/mpv;
+    file.".config/kitty/ssh.conf".text = "shell_integration no-cursor";
     packages = with pkgs; [
       (writeShellScriptBin "xkeen-run" (builtins.readFile ./scripts/xkeen-run))
       (writeShellScriptBin "cs" (builtins.readFile ./scripts/cs))
@@ -18,9 +19,9 @@
       (writeShellScriptBin "games-idle-inhibition" (builtins.readFile ./scripts/games-idle-inhibition))
       oniri.packages.${pkgs.stdenv.hostPlatform.system}.default
       ayugram-desktop
+      bash-completion
       btop
       bun
-      bash-completion
       codex
       dysk
       fastfetch
@@ -51,6 +52,7 @@
       nvtopPackages.nvidia
       nwg-look
       pkgsCross.aarch64-multiplatform-musl.stdenv.cc
+      playerctl
       protonplus
       python3
       qbittorrent
@@ -121,7 +123,8 @@
     };
     kitty = {
       enable = true;
-      # shellIntegration.mode = null;
+      shellIntegration.mode = "no-cursor";
+      enableGitIntegration = true;
       settings = {
         auto_reload_config = "0.1";
         background_blur = "1";
@@ -131,10 +134,9 @@
         confirm_os_window_close = "0";
         copy_on_select = "clipboard";
         cursor_blink_interval = "0";
-        cursor_shape = "block";
+        cursor_shape = "underline";
         cursor_trail = "1";
-        cursor_trail_decay = "0.01 0.4";
-        dynamic_background_opacity = "yes";
+        cursor_trail_decay = "0.1 0.4";
         font_family = "JetBrainsMono Nerd Font";
         font_size = "11.5";
         input_delay = "0";
@@ -146,9 +148,8 @@
         scrollback_lines = "10000";
         select_by_word_characters = ",│`|:\"' ()[]{}<>";
         sync_to_monitor = "no";
-        tab_bar_edge = "bottom";
         tab_bar_style = "powerline";
-        tab_powerline_style = "angled";
+        tab_powerline_style = "slanted";
         url_style = "curly";
         wayland_enable_ime = "no";
         wheel_scroll_multiplier = "3.0";
