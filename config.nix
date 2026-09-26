@@ -186,6 +186,7 @@
       enable = true;
       defaultEditor = true;
     };
+
   };
   hardware = {
     graphics.enable = true;
